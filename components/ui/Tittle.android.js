@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Platform } from 'react-native';
 
 const Tittle = ({children}) => {
     return (
-        <Text style={styles.title}>{children}</Text>
+        <Text style={styles.title}>{children} ANDROID</Text>
     );
 };
 
