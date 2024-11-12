@@ -3,10 +3,9 @@ import StartGameScore from './screens/StartGameScore';
 
 export default function App() {
   return (
-    <View>
-      <Text>Hello, World.</Text>
+    <>
       <StartGameScore />
-    </View>
+    </>
   );
 }
 
