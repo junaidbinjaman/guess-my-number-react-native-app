@@ -1,22 +1,48 @@
-import React from 'react';
-import {TextInput, View, StyleSheet} from 'react-native';
+import {Children, useState} from 'react';
+import {TextInput, View, StyleSheet, Alert} from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 
 const StartGameScore = () => {
+    const [enteredNumber, setEnteredNumber] = useState<string>('');
+
+    function numberInoutHandler(enteredText: string) {
+        setEnteredNumber(enteredText)
+    }
+
+    function resetInputHandler() {
+        setEnteredNumber('');
+    }
+
+    function confirmInoutHandler() {
+         const chosenNumber = parseInt(enteredNumber);
+
+         if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+            Alert.alert(
+                'Invalid Number',
+                'Number has to be a number between 1 and 99',
+                [
+                    {text: 'okay', style: 'destructive', onPress: resetInputHandler}
+                ]
+            );
+            return;
+         }
+    }
+
     return (
         <View style={styles.inputContainer}>
             <TextInput
                 style={styles.numberInput}
-                maxLength={2}
                 keyboardType='number-pad'
                 autoCapitalize='none'
+                onChangeText={numberInoutHandler}
+                value={enteredNumber}
             />
             <View style={styles.buttonsContainer}>
                 <View style={styles.buttonContainer}>
-                    <PrimaryButton>Reset</PrimaryButton>
+                    <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <PrimaryButton>Confirm</PrimaryButton>
+                    <PrimaryButton onPress={confirmInoutHandler}>Confirm</PrimaryButton>
                 </View>
             </View>
         </View>
@@ -52,9 +78,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     buttonsContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     buttonContainer: {
-        flex: 1
-    }
+        flex: 1,
+    },
 });
