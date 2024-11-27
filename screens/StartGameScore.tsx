@@ -1,8 +1,13 @@
 import {Children, useState} from 'react';
 import {TextInput, View, StyleSheet, Alert} from 'react-native';
-import PrimaryButton from '../components/PrimaryButton';
+import PrimaryButton from '../components/ui/PrimaryButton';
+import Colors from '../constants/colors';
 
-const StartGameScore = () => {
+type  StartGameScoreProps = {
+    onPickedNumber: (chosenNumber:number) => void;
+}
+
+const StartGameScore = ({onPickedNumber}: StartGameScoreProps) => {
     const [enteredNumber, setEnteredNumber] = useState<string>('');
 
     function numberInoutHandler(enteredText: string) {
@@ -26,6 +31,8 @@ const StartGameScore = () => {
             );
             return;
          }
+
+         onPickedNumber(chosenNumber);
     }
 
     return (
@@ -59,7 +66,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 24,
         borderRadius: 8,
         padding: 16,
-        backgroundColor: '#3b021f',
+        backgroundColor: Colors.primary800,
         elevation: 4,
         shadowColor: 'black',
         shadowOffset: {width: 0, height: 2},
@@ -70,11 +77,11 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         fontSize: 32,
-        borderBottomColor: '#ddb52f',
+        borderBottomColor: Colors.accent500,
         borderBottomWidth: 2,
         marginVertical: 8,
         fontWeight: 'bold',
-        color: '#ddb52f',
+        color: Colors.accent500,
         textAlign: 'center',
     },
     buttonsContainer: {
