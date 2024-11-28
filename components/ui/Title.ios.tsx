@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
 import { Text, StyleSheet } from 'react-native'
-import Colors from '../../constants/colors'
 
 type TitleProps = {
     children: ReactNode
@@ -21,8 +20,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         textAlign: 'center',
-        borderWidth: 2,
-        borderColor: 'white',
-        padding: 24
+        padding: 24,
+        maxWidth: '80%',
+        width: 500
     }
 })
