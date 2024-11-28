@@ -16,6 +16,7 @@ export default Title
 
 const styles = StyleSheet.create({
     title: {
+        fontFamily: 'bungee-spice',
         fontSize: 24,
         fontWeight: 'bold',
         color: 'white',
